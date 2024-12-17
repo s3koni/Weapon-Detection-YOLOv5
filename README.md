@@ -104,6 +104,7 @@ Successfully renamed exp folder to expDUMP
 ├── main.py             # Entry point for the program
 ├── check_exp.py        # Pre-run check for existing 'exp' folder
 ├── rename_exp.py       # Renames 'exp' to 'expDUMP'
+├── analyze_labels.py   # Runs the logic to analyze the contents of the exp folder.
 ├── yolov5/             # YOLOv5 model folder
 │   ├── detect.py           # YOLOv5 detection script
 │   ├── runs/
