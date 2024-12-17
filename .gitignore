@@ -1,0 +1,32 @@
+__pycache__/
+venv/
+*.pdf
+*.pyc
+*.pyo
+*.pyd
+
+# Dataset files
+datasets/
+*.jpg
+*.png
+*.jpeg
+*.txt
+*.csv
+
+# YOLOv5 outputs
+runs/
+inference/
+
+# Log files
+*.log
+
+# Temporary files and folders
+*.tmp
+*.temp
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+.vscode/
+
