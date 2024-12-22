@@ -1,4 +1,5 @@
 __pycache__/
+optimizer_config.json
 venv/
 *.pyc
 *.pyo
