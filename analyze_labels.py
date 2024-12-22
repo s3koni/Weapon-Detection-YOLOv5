@@ -2,10 +2,6 @@ import os
 import glob
 
 def analyze_labels():
-    """
-    Analyzes YOLOv5 detection labels for knives and guns in the specified directory.
-    Returns analysis results including frame counts and violence rating.
-    """
     print("Analyzing generated labels")
     
     # Define the labels directory path
@@ -22,6 +18,7 @@ def analyze_labels():
     # Initialize counters
     knife_frames = 0  # class 0
     gun_frames = 0    # class 1
+    violent_frames_set = set()  # To track unique violent frames
     
     # Process each label file
     for label_file in txt_files:
@@ -29,37 +26,42 @@ def analyze_labels():
             content = f.read().strip()
             if content:  # Check if file is not empty
                 lines = content.split('\n')
-                has_knife = any(line.startswith('0 ') for line in lines)
-                has_gun = any(line.startswith('1 ') for line in lines)
+                has_knife = any(line.startswith('80 ') for line in lines)
+                has_gun = any(line.startswith('81 ') for line in lines)
                 
                 if has_knife:
                     knife_frames += 1
                 if has_gun:
                     gun_frames += 1
+                if has_knife or has_gun:
+                    violent_frames_set.add(label_file)
     
     # Calculate totals and rating
-    total_violent_frames = knife_frames + gun_frames
+    total_violent_frames = len(violent_frames_set)  # Count unique violent frames
     total_frames = len(txt_files)
     violence_rating = (total_violent_frames / total_frames * 100) if total_frames > 0 else 0
     
     # Prepare output message
     result = f"""
 Video Analysis Results
-This video contains violent content
-There are: {knife_frames} frames containing knives
-           {gun_frames} frames containing guns
-A total number of frames that show violence: {total_violent_frames}
-This video has a violence rating of: {violence_rating:.2f}%
+---------------------------------------------------------------------------------------
+There are: {knife_frames} frame(s) containing knives
+          {gun_frames} frame(s) containing guns
+A total number of frames that depict violence: {total_violent_frames}
+Based on the frames, the Violence Probability Rating is: {violence_rating:.2f}%
+
+(NOTE! If the model is able to detect other objects in the video, this can help 
+generate a more accurate Violence Probability Rating.)
 
 Press Enter to exit..."""
     
     return result
 
+
+'''
+ Main function to run the analysis.
+'''
 def main():
-    """
-    Main function to run the analysis.
-    Can be called from another script or run standalone.
-    """
     result = analyze_labels()
     print(result)
     if result != "No files or folders detected":

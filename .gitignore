@@ -1,6 +1,5 @@
 __pycache__/
 venv/
-*.pdf
 *.pyc
 *.pyo
 *.pyd
@@ -29,4 +28,3 @@ inference/
 Thumbs.db
 
 .vscode/
-

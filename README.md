@@ -27,7 +27,7 @@ This project analyzes videos for violent content using a YOLOv5-based object det
 ## **Workflow**
 
 ### **1. Pre-Check**  
-`main.py` invokes `check_exp.py` to check for an existing `exp` folder:
+`main.py` invokes `check_existing_exp()` to check for an existing `exp` folder:
    - If no `exp` folder exists, the process continues.
    - If an `exp` folder exists, the user is prompted to resolve the conflict.
 
@@ -85,11 +85,14 @@ Processing complete!
 Analyzing generated labels
 
 Video Analysis Results
-This video contains violent content
-There are: 0 frames containing knives
-           5 frames containing guns
-A total number of frames that show violence: 5
-This video has a violence rating of: 100.00%
+---------------------------------------------------------------------------------------
+There are: 0 frame(s) containing knives
+           5 frame(s) containing guns
+A total number of frames that depict violence: 5
+Based on the frames, the Violence Probability Rating is: 40.00%
+
+(NOTE! If the model is able to detect other objects in the video, this can help 
+generate a more accurate Violence Probability Rating.)
 
 Press Enter to exit...
 
@@ -102,13 +105,13 @@ Successfully renamed exp folder to expDUMP
 
 ```plaintext
 ├── main.py             # Entry point for the program
-├── check_exp.py        # Pre-run check for existing 'exp' folder
+├── analyze_labels.py   # Runs the logic to analyze the contents of the exp folder.
 ├── rename_exp.py       # Renames 'exp' to 'expDUMP'
 ├── yolov5/             # YOLOv5 model folder
-│   ├── detect.py           # YOLOv5 detection script
-│   ├── runs/
-│   │   └── detect/     # Results folders (e.g., exp, expDUMP)
-│   └── datasets/       # Datasets used for training
+│   ├── detect.py       # YOLOv5 detection script
+│   ├── skViolence.pt   # Custom Trained weight for detection
+│   └── runs/
+│       └── detect/     # Results folders (e.g., exp, expDUMP)
 ├── requirements.txt    # Python dependencies
 └── README.md           # Documentation
 ```
@@ -127,4 +130,3 @@ This project requires Python 3.8+ and the following Python packages:
 
 
 Feel free to reach out with questions or contributions!
-

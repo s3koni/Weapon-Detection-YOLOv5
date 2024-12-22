@@ -28,8 +28,6 @@ Usage - formats:
                                  yolov5s_paddle_model       # PaddlePaddle
 """
 
-import sys
-sys.setrecursionlimit(10000)
 import argparse
 import csv
 import os
