@@ -1,6 +1,6 @@
-# **Violence Detection in Videos Using YOLOv5**
+# **Weapon Detection in Videos Using YOLOv5**
 
-This project analyzes videos for violent content using a YOLOv5-based object detection system. The system detects weapons like guns and knives, assesses frames for violence, and provides a violence rating for the entire video.
+This project analyzes videos for violent content using a YOLOv5-based object detection system. The system detects weapons like guns and knives, assesses frames for violence, and provides a violence probability rating for the entire video.
 
 ---
 
@@ -39,7 +39,7 @@ The selected video is passed to the `detect.py` script for analysis. The detecti
    - Number of frames containing knives.
    - Number of frames containing guns.
    - Total frames classified as violent.
-   - Overall violence rating (%).
+   - Overall violence probability rating (%).
 
 ### **4. Post-Processing**  
 The results folder (`exp`) is renamed to `expDUMP` when the user presses Enter.
